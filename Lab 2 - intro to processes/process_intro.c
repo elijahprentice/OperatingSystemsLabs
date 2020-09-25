@@ -5,14 +5,14 @@
 #define   MAX_COUNT  30
 
 void  ChildProcess(void);                /* child process prototype  */
-void  ParentProcess(void);               /* parent process prototype */
-
-int pids[2];
 
 void  main(void)
 {
 
+     int status;
+     
      //create the first child
+     int pids[2];
      pids[0] = fork();
      srand(getpid());
      
@@ -26,7 +26,7 @@ void  main(void)
        //create the second child
        pids[1] = fork();
        
-       if (pids[0] == 0){
+       if (pids[1] == 0){
          
          //call ChildProcess() for the second child
          ChildProcess();
@@ -34,7 +34,12 @@ void  main(void)
        } else {
          
          //call ParentProcess() and wait for the child processes
-         ParentProcess();
+         int i;
+            for(i = 0; i < 2; i++){
+               
+               wait(&status);
+               printf("Child Pid: %d has completed.\n", pids[i]);
+            }
        }
      }
 }
@@ -55,16 +60,4 @@ void  ChildProcess(void)
   }
   
   exit(0);    //terminate the child process
-}
-
-void  ParentProcess(void)
-{
-  
-  //parent waits for the first child process to complete
-  wait(NULL);
-  printf("Child Pid: %d has completed.\n", pids[0]);
-  
-  //parent waits for the second child process to complete
-  wait(NULL);
-  printf("Child Pid: %d has completed.\n", pids[1]);
 }
