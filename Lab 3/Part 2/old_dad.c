@@ -61,7 +61,7 @@ int main(int  argc, char *argv[])
 void DearOldDad(int * PtrBank, int * PtrTurn)
 {
   int i;
-    for (i = 0; i < 15; i++){
+    for (i = 0; i < 25; i++){
     sleep(rand() % MAX_SLEEP);
   
     while(*PtrTurn != 0){}
@@ -93,7 +93,7 @@ void PoorStudent(int * PtrBank, int * PtrTurn)
 {
   
   int j;
-  for(j = 0; j < 15; j++){
+  for(j = 0; j < 25; j++){
   
     sleep(rand() % MAX_SLEEP);
   
