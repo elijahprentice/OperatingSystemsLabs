@@ -198,7 +198,11 @@ void findavgTimePriority( ProcessType plist[], int n)
     * 1- Sort the processes (i.e. plist[]), burst time and priority according to the priority.
     * 2- Now simply apply FCFS algorithm.
     */
-     
+    
+    // Managed to get qsort to work
+    qsort(plist, n, sizeof(ProcessType), my_comparer);
+  
+    /*
     // Bubble sort processes: 'qsort' was not working
     // for me, so I'm using a bubble sort algorithm as
     // a placeholder until I figure out the issue.
@@ -226,7 +230,7 @@ void findavgTimePriority( ProcessType plist[], int n)
           plist[i+1].bt = temp;
           
           swapped = 1;
-          printf("Swapped\n");
+          //printf("Swapped\n");
         }
       }
       if (swapped == 1) {
@@ -234,10 +238,12 @@ void findavgTimePriority( ProcessType plist[], int n)
       }
     }
     
-  int a = 0;
+
+    int a = 0;
     for(; a < n; a++) {
       printf("%d\n", plist[a].pri);
     }
+    */
     
     findWaitingTime(plist, n);
     findTurnAroundTime(plist, n); 
